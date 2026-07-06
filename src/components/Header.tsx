@@ -10,7 +10,7 @@ const Header = () => {
           <ul className="flex gap-3 justify-end">
             <li>
               <button
-                onClick={() => navigate("/customers")}
+                onClick={() => navigate("/")}
                 className="px-3 py-1 rounded-md font-medium bg-transparent text-white hover:bg-white/10"
               >
                 Customers
