@@ -18,7 +18,7 @@ const Header = () => {
             </li>
             <li>
               <button
-                onClick={() => navigate("/add-customer")}
+                onClick={() => navigate("/add")}
                 className="px-3 py-1 rounded-md font-medium bg-transparent text-white hover:bg-white/10"
               >
                 Add Customer
