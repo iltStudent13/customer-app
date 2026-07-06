@@ -9,17 +9,29 @@ import { useNavigate } from "react-router-dom";
 import { type CustomerFormData } from "../types/customer";
 import { SubmitEvent } from "react";
 
+const initialFormData: CustomerFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  address: "",
+  city: "",
+  state: "",
+  zip: "",
+};
+
+const formFields: Array<keyof CustomerFormData> = [
+  "name",
+  "email",
+  "phone",
+  "address",
+  "city",
+  "state",
+  "zip",
+];
+
 const AddCustomer = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<CustomerFormData>({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
+  const [formData, setFormData] = useState<CustomerFormData>(initialFormData);
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +53,9 @@ const AddCustomer = () => {
         throw new Error("Failed to add customer.");
       }
 
-      navigate("/customers");
+      setFormData(initialFormData);
+      setError(null);
+      navigate("/add", { replace: true });
     } catch {
       setError("Unable to add customer. Please try again.");
     }
@@ -52,7 +66,7 @@ const AddCustomer = () => {
       <h2 className="text-2xl font-semibold mb-4">Add Customer</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {Object.keys(formData).map((key) => (
+        {formFields.map((key) => (
           <div key={key}>
             <label htmlFor={key} className="block font-medium mb-1">
               {key.charAt(0).toUpperCase() + key.slice(1)}
@@ -61,7 +75,7 @@ const AddCustomer = () => {
               type="text"
               id={key}
               name={key}
-              value={(formData as any)[key]}
+              value={formData[key]}
               onChange={handleChange}
               className="px-3 py-2 border rounded-md w-full"
             />

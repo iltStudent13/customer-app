@@ -59,6 +59,16 @@
       "state": "me",
       "zip": "03055",
       "id": 6
+    },
+    {
+      "name": "Samantha",
+      "email": "Farm@farm.com",
+      "phone": "604",
+      "address": "21 main st",
+      "city": "new ham",
+      "state": "MA",
+      "zip": "55555",
+      "id": 7
     }
   ]
 }
