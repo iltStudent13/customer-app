@@ -7,7 +7,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { type CustomerFormData } from "../types/customer";
-import { SubmitEvent } from "react";
+import CustomerForm from "../components/CustomerForm";
 
 const initialFormData: CustomerFormData = {
   name: "",
@@ -19,16 +19,6 @@ const initialFormData: CustomerFormData = {
   zip: "",
 };
 
-const formFields: Array<keyof CustomerFormData> = [
-  "name",
-  "email",
-  "phone",
-  "address",
-  "city",
-  "state",
-  "zip",
-];
-
 const AddCustomer = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<CustomerFormData>(initialFormData);
@@ -38,8 +28,7 @@ const AddCustomer = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       const response = await fetch("/api/customers", {
         method: "POST",
@@ -65,29 +54,12 @@ const AddCustomer = () => {
     <section className="p-4 text-left">
       <h2 className="text-2xl font-semibold mb-4">Add Customer</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {formFields.map((key) => (
-          <div key={key}>
-            <label htmlFor={key} className="block font-medium mb-1">
-              {key.charAt(0).toUpperCase() + key.slice(1)}
-            </label>
-            <input
-              type="text"
-              id={key}
-              name={key}
-              value={formData[key]}
-              onChange={handleChange}
-              className="px-3 py-2 border rounded-md w-full"
-            />
-          </div>
-        ))}
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        >
-          Add Customer
-        </button>
-      </form>
+      <CustomerForm
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        submitLabel="Add Customer"
+      />
     </section>
   );
 };

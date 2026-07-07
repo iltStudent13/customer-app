@@ -2,9 +2,10 @@
 // The form is pre-filled with the customer's current data
 // when the user submits the form, it sends a PUT request to update the customer data in the API.
 
-import { useEffect, useState, type ChangeEvent, SubmitEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { type CustomerFormData } from "../types/customer";
+import CustomerForm from "../components/CustomerForm";
 
 const EditCustomer = () => {
   const { id } = useParams<{ id: string }>();
@@ -49,9 +50,7 @@ const EditCustomer = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     if (!id) {
       setError("Missing customer id.");
       return;
@@ -85,76 +84,13 @@ const EditCustomer = () => {
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="grid gap-3">
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Name"
-          className="border rounded px-3 py-2"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          className="border rounded px-3 py-2"
-          required
-        />
-        <input
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Phone"
-          className="border rounded px-3 py-2"
-        />
-        <input
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Address"
-          className="border rounded px-3 py-2"
-        />
-        <input
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          placeholder="City"
-          className="border rounded px-3 py-2"
-        />
-        <input
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-          placeholder="State"
-          className="border rounded px-3 py-2"
-        />
-        <input
-          name="zip"
-          value={formData.zip}
-          onChange={handleChange}
-          placeholder="ZIP"
-          className="border rounded px-3 py-2"
-        />
-
-        <div className="flex gap-2 mt-2">
-          <button
-            type="submit"
-            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-          >
-            Save Changes
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate("/")}
-            className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <CustomerForm
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        submitLabel="Update Customer"
+        onCancel={() => navigate("/")}
+      />
     </section>
   );
 };

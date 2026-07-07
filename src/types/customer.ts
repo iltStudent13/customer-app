@@ -3,10 +3,10 @@ export interface Customer {
   name: string;
   email: string;
   phone: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
 }
 
 export type CustomerFormData = Omit<Customer, "id">;

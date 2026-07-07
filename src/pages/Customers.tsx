@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchFilter from "../components/SearchFilter";
+import CustomerList from "../components/CustomerList";
 import type { Customer } from "../types/customer";
 
 function Customers() {
@@ -78,139 +79,11 @@ function Customers() {
       {error ? <p>{error}</p> : null}
 
       {!isLoading && !error ? (
-        <div className="overflow-x-auto">
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              border: "1px solid var(--border)",
-              borderRadius: "8px",
-              overflow: "hidden",
-            }}
-          >
-            <thead>
-              <tr style={{ backgroundColor: "var(--code-bg)" }}>
-                <th
-                  scope="col"
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  Name
-                </th>
-                <th
-                  scope="col"
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  Email
-                </th>
-                <th
-                  scope="col"
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  Phone
-                </th>
-                <th
-                  scope="col"
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  City
-                </th>
-                <th
-                  scope="col"
-                  style={{
-                    textAlign: "left",
-                    padding: "12px",
-                    borderBottom: "1px solid var(--border)",
-                  }}
-                >
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredCustomers.map((customer, index) => (
-                <tr
-                  key={customer.id}
-                  style={{
-                    backgroundColor:
-                      index % 2 === 0 ? "transparent" : "var(--social-bg)",
-                  }}
-                >
-                  <td
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {customer.name}
-                  </td>
-                  <td
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {customer.email}
-                  </td>
-                  <td
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {customer.phone}
-                  </td>
-                  <td
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {customer.city}
-                  </td>
-                  <td
-                    style={{
-                      padding: "12px",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => navigate(`/edit/${customer.id}`)}
-                        className="px-3 py-1 rounded-md text-white bg-blue-500 hover:bg-blue-600"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteCustomer(customer.id)}
-                        className="px-3 py-1 rounded-md text-white bg-red-500 hover:bg-red-600"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <CustomerList
+          customers={filteredCustomers}
+          onEditCustomer={(id) => navigate(`/edit/${id}`)}
+          onDeleteCustomer={handleDeleteCustomer}
+        />
       ) : null}
     </section>
   );
