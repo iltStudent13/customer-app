@@ -1,14 +1,14 @@
 {
   "customers": [
     {
-      "id": 1,
       "name": "Maria Garcia",
       "email": "maria.garcia@example.com",
       "phone": "555-0101",
       "address": "742 Evergreen Terraces",
       "city": "Springfield",
       "state": "IL",
-      "zip": "62704"
+      "zip": "62704",
+      "id": 1
     },
     {
       "id": 2,
@@ -53,8 +53,8 @@
     {
       "name": "nathan fart",
       "email": "nathan@gmail.com",
-      "phone": "3035554",
-      "address": "22 min st",
+      "phone": "3035554666",
+      "address": "22 min street",
       "city": "sdddd",
       "state": "me",
       "zip": "55555",
