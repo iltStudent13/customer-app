@@ -124,11 +124,11 @@ const CustomerList = ({
                   borderBottom: "1px solid var(--border)",
                 }}
               >
-                <div className="flex gap-2">
+                <div className="customer-actions">
                   <button
                     type="button"
                     onClick={() => onEditCustomer(customer.id)}
-                    className="px-3 py-1 rounded-md text-white bg-blue-500 hover:bg-blue-600"
+                    className="button-edit"
                   >
                     Edit
                   </button>
@@ -142,7 +142,7 @@ const CustomerList = ({
                       )
                         onDeleteCustomer(customer.id);
                     }}
-                    className="px-3 py-1 rounded-md text-white bg-red-500 hover:bg-red-600"
+                    className="button-delete"
                   >
                     Delete
                   </button>

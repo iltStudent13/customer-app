@@ -13,6 +13,7 @@ interface CustomerFormProps {
   submitLabel: string;
   onCancel?: () => void;
   cancelLabel?: string;
+  hideForm?: boolean;
 }
 
 const formFields: Array<keyof CustomerFormData> = [
@@ -83,7 +84,7 @@ const CustomerForm = (props: CustomerFormProps) => {
         </div>
       ))}
 
-      <div className="flex gap-2 mt-2">
+      <div className="customer-actions">
         <button type="submit" className="button">
           {submitLabel}
         </button>

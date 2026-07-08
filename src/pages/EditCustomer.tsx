@@ -20,11 +20,13 @@ const EditCustomer = () => {
   const { editCustomer } = useCustomers();
   const [formData, setFormData] = useState<CustomerFormData>(initialFormData);
   const [error, setError] = useState<string | null>(null);
+  const [hideForm, setHideForm] = useState(false);
 
   useEffect(() => {
     const fetchCustomer = async () => {
       if (!id) {
         setError("Missing customer id.");
+        setHideForm(true);
         return;
       }
 
@@ -46,8 +48,10 @@ const EditCustomer = () => {
           zip: data.zip ?? "",
         });
         setError(null);
+        setHideForm(false);
       } catch {
         setError("Unable to fetch customer. Please try again.");
+        setHideForm(true);
       }
     };
 
@@ -61,6 +65,7 @@ const EditCustomer = () => {
   const handleSubmit = async () => {
     if (!id) {
       setError("Missing customer id.");
+      setHideForm(true);
       return;
     }
 
@@ -76,21 +81,95 @@ const EditCustomer = () => {
 
   return (
     <section className="max-w-2xl mx-auto p-4">
-      <h2 className="text-xl font-semibold mb-4">Edit Customer</h2>
+      <h2>Edit Customer</h2>
 
-      {error && (
+      {error ? (
         <p role="alert" className="mb-4 text-red-600">
           {error}
         </p>
-      )}
+      ) : null}
 
-      <CustomerForm
-        formData={formData}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        submitLabel="Update Customer"
-        onCancel={() => navigate("/")}
-      />
+      {hideForm ? (
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+        >
+          Back to Customers
+        </button>
+      ) : (
+        <form onSubmit={handleSubmit} className="grid gap-3">
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+            className="border rounded px-3 py-2"
+            required
+          />
+          <input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="border rounded px-3 py-2"
+            required
+          />
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Phone"
+            className="border rounded px-3 py-2"
+          />
+          <input
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Address"
+            className="border rounded px-3 py-2"
+          />
+          <input
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="City"
+            className="border rounded px-3 py-2"
+          />
+          <input
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            placeholder="State"
+            className="border rounded px-3 py-2"
+          />
+          <input
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+            placeholder="ZIP"
+            className="border rounded px-3 py-2"
+          />
+
+          <div className="form customer-actions">
+            <button
+              type="submit"
+              className="button"
+              onClick={() => navigate("/")}
+            >
+              Save Changes
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
     </section>
   );
 };
