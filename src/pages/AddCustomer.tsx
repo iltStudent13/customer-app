@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import CustomerForm from "../components/CustomerForm";
-import useCustomers from "../hooks/useCustomers";
+import useCustomers from "../hooks/useCustomerApi";
 
 const AddCustomer = () => {
   const navigate = useNavigate();

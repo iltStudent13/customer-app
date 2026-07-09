@@ -11,11 +11,6 @@ const initialFormData: CustomerFormData = {
   zip: "",
 };
 
-
-//addCustomer function that takes formData as an argument and sends a POST request to the server to add a new customer. If the request is successful, it resets the formData to initialFormData and navigates to the "/add" route. If the request fails, it sets an error message.
-// use the logic that exists in AddCustomer.tsx and EditCustomer.tsx to create a custom hook called useCustomers that handles the state and logic for adding, editing, and deleting customers. The hook should return the necessary state variables and functions to be used in the Customers, AddCustomer, and EditCustomer components.
-
-
 export const useCustomers = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [formData, setFormData] = useState<CustomerFormData>(initialFormData);
@@ -86,7 +81,9 @@ export const useCustomers = () => {
       const updatedCustomerData: Customer = await response.json();
       setCustomers((prevCustomers) =>
         prevCustomers.map((customer) =>
-          customer.id === updatedCustomerData.id ? updatedCustomerData : customer,
+          customer.id === updatedCustomerData.id
+            ? updatedCustomerData
+            : customer,
         ),
       );
       setError(null);

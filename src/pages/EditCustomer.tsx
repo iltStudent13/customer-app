@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomerForm from "../components/CustomerForm";
 import { type CustomerFormData } from "../types/customer";
-import useCustomers from "../hooks/useCustomers";
+import useCustomers from "../hooks/useCustomerApi";
 
 const initialFormData: CustomerFormData = {
   name: "",
