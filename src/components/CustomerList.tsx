@@ -7,6 +7,13 @@ interface CustomerListProps {
   onDeleteCustomer: (id: number) => void;
 }
 
+const counter = (customers: Customer[]) => {
+  if (customers.length === 0) {
+    return "No customers found.";
+  }
+  return customers.length;
+};
+
 const CustomerList = ({
   customers,
   onEditCustomer,
@@ -83,6 +90,7 @@ const CustomerList = ({
           ))}
         </tbody>
       </table>
+      <p>{`Total customers: ${counter(customers)}`}</p>
     </div>
   );
 };
