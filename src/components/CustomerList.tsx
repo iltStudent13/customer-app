@@ -14,65 +14,22 @@ const CustomerList = ({
 }: CustomerListProps) => {
   return (
     <div className="overflow-x-auto">
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          border: "1px solid var(--border)",
-          borderRadius: "8px",
-          overflow: "hidden",
-        }}
-      >
+      <table className="customer-table">
         <thead>
-          <tr style={{ backgroundColor: "var(--code-bg)" }}>
-            <th
-              scope="col"
-              style={{
-                textAlign: "left",
-                padding: "12px",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+          <tr className="customer-table-head-row">
+            <th scope="col" className="customer-table-header-cell">
               Name
             </th>
-            <th
-              scope="col"
-              style={{
-                textAlign: "left",
-                padding: "12px",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+            <th scope="col" className="customer-table-header-cell">
               Email
             </th>
-            <th
-              scope="col"
-              style={{
-                textAlign: "left",
-                padding: "12px",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+            <th scope="col" className="customer-table-header-cell">
               Phone
             </th>
-            <th
-              scope="col"
-              style={{
-                textAlign: "left",
-                padding: "12px",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+            <th scope="col" className="customer-table-header-cell">
               City
             </th>
-            <th
-              scope="col"
-              style={{
-                textAlign: "left",
-                padding: "12px",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
+            <th scope="col" className="customer-table-header-cell">
               Actions
             </th>
           </tr>
@@ -81,49 +38,23 @@ const CustomerList = ({
           {customers.map((customer, index) => (
             <tr
               key={customer.id}
-              style={{
-                backgroundColor:
-                  index % 2 === 0 ? "transparent" : "var(--social-bg)",
-              }}
+              className={
+                index % 2 === 0
+                  ? "customer-table-row"
+                  : "customer-table-row customer-table-row-alt"
+              }
             >
-              <td
-                style={{
-                  padding: "12px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
+              <td className="customer-table-cell">
                 {toTitleCase(customer.name)}
               </td>
-              <td
-                style={{
-                  padding: "12px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
-                {customer.email}
-              </td>
-              <td
-                style={{
-                  padding: "12px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
+              <td className="customer-table-cell">{customer.email}</td>
+              <td className="customer-table-cell">
                 {formatPhoneNumber(customer.phone)}
               </td>
-              <td
-                style={{
-                  padding: "12px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
+              <td className="customer-table-cell">
                 {toTitleCase(customer.city)}
               </td>
-              <td
-                style={{
-                  padding: "12px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
+              <td className="customer-table-cell">
                 <div className="customer-actions">
                   <button
                     type="button"

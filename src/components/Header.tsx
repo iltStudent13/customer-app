@@ -5,29 +5,23 @@ const Header = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   return (
-    <header className="site-header bg-blue-500 text-white p-4">
-      <div className="w-full flex items-center justify-between">
-        <h1 className="text-md font-bold text-left">Customer Manager</h1>
-        <nav aria-label="Main Navigation" className="ml-auto">
-          <ul className="header-list flex gap-4">
+    <header className="header">
+      <div className="header-inner">
+        <h1 className="header-title">Customer Manager</h1>
+        <nav aria-label="Main Navigation">
+          <ul className="header-list">
             <li>
               <button onClick={toggleTheme}>
                 {theme === "light" ? "Dark Mode" : "Light Mode"}
               </button>
             </li>
             <li>
-              <button
-                onClick={() => navigate("/")}
-                className="px-3 py-1 rounded-md font-medium bg-transparent text-white hover:bg-white/10"
-              >
+              <button onClick={() => navigate("/")} className="button">
                 Customers
               </button>
             </li>
             <li>
-              <button
-                onClick={() => navigate("/add")}
-                className="px-3 py-1 rounded-md font-medium bg-transparent text-white hover:bg-white/10"
-              >
+              <button onClick={() => navigate("/add")} className="button">
                 Add Customer
               </button>
             </li>
