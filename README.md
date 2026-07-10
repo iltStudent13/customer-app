@@ -90,6 +90,35 @@ npm run build
 npm run preview
 ```
 
+## Deployment (GitHub Pages)
+
+### One-time setup
+
+1. In your GitHub repository, open **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select branch **`gh-pages`** and folder **`/(root)`**.
+
+### Deploy
+
+```bash
+npm run deploy
+```
+
+This command runs `predeploy` (`npm run build`) and then publishes the `dist` folder to the `gh-pages` branch.
+
+### Redeploy after changes
+
+```bash
+git pull
+npm install
+npm run deploy
+```
+
+### Notes
+
+- The Vite base path is configured for GitHub Pages in `vite.config.ts` as `/customer-app/`.
+- If deployment succeeds but the site looks stale, hard refresh the page or wait a minute for Pages to update.
+
 ## Project Structure
 
 ├── src
@@ -132,4 +161,3 @@ npm run preview
 - React Router
 - Vitest
 - React Testing Library
-- Jest

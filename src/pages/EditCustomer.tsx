@@ -61,7 +61,9 @@ const EditCustomer = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     if (!id) {
       setError("Missing customer id.");
       setHideForm(true);
@@ -152,11 +154,7 @@ const EditCustomer = () => {
           />
 
           <div className="form customer-actions">
-            <button
-              type="submit"
-              className="button"
-              onClick={() => navigate("/")}
-            >
+            <button type="submit" className="button">
               Save Changes
             </button>
             <button
