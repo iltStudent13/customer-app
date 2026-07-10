@@ -2,6 +2,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { type CustomerFormData } from "../types/customer";
 import useCustomers from "../hooks/useCustomerApi";
+import { type SubmitEvent } from "react";
 
 const initialFormData: CustomerFormData = {
   name: "",
@@ -61,7 +62,7 @@ const EditCustomer = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!id) {
