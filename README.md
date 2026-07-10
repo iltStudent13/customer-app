@@ -121,6 +121,7 @@ npm run deploy
 
 ## Project Structure
 
+```text
 ├── src
 │ ├── App.css
 │ ├── App.tsx
@@ -152,6 +153,7 @@ npm run deploy
 │ └── utils
 │ ├── customerSchema.ts
 │ └── formatter.ts
+```
 
 ## Technologies
 
