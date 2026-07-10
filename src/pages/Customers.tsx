@@ -46,7 +46,7 @@ function Customers() {
         customer.name,
         customer.email,
         customer.phone,
-        customer.city,
+        customer.city ?? "",
       ].some((field) => field.toLowerCase().includes(query));
     });
   }, [customers, searchTerm]);

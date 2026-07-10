@@ -1,6 +1,6 @@
 import { useState, type ChangeEventHandler } from "react";
 import type { CustomerFormData } from "../types/customer";
-import { SubmitEvent } from "react";
+import { type SubmitEvent } from "react";
 import {
   validateCustomerForm,
   type CustomerFormErrors,
