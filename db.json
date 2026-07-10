@@ -1,14 +1,14 @@
 {
   "customers": [
     {
-      "id": 1,
       "name": "Maria Garcia",
       "email": "maria.garcia@example.com",
       "phone": "555-0101",
-      "address": "742 Evergreen Terrace",
+      "address": "742 Evergreen Terraces",
       "city": "Springfield",
       "state": "IL",
-      "zip": "62704"
+      "zip": "62704",
+      "id": 1
     },
     {
       "id": 2,
@@ -51,24 +51,14 @@
       "zip": "02108"
     },
     {
-      "name": "Nathan",
+      "name": "nathan fart",
       "email": "nathan@gmail.com",
-      "phone": "603333333",
-      "address": "21 min st",
-      "city": "sanford",
+      "phone": "3035554666",
+      "address": "22 min street",
+      "city": "sdddd",
       "state": "me",
-      "zip": "03055",
-      "id": 6
-    },
-    {
-      "name": "Samantha",
-      "email": "Farm@farm.com",
-      "phone": "604",
-      "address": "21 main st",
-      "city": "new ham",
-      "state": "MA",
       "zip": "55555",
-      "id": 7
+      "id": 8
     }
   ]
 }
