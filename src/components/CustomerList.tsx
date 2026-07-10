@@ -59,7 +59,7 @@ const CustomerList = ({
                 {formatPhoneNumber(customer.phone)}
               </td>
               <td className="customer-table-cell">
-                {toTitleCase(customer.city)}
+                {customer.city ? toTitleCase(customer.city) : ""}
               </td>
               <td className="customer-table-cell">
                 <div className="customer-actions">

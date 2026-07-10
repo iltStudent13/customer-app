@@ -8,6 +8,10 @@ export const validateCustomerForm = (
   data: CustomerFormData,
 ): { isValid: boolean; errors: CustomerFormErrors } => {
   const errors: CustomerFormErrors = {};
+  const zip = data.zip ?? "";
+  const state = data.state ?? "";
+  const city = data.city ?? "";
+  const address = data.address ?? "";
 
   if (!data.name.trim()) {
     errors.name = "Name is required.";
@@ -35,19 +39,19 @@ export const validateCustomerForm = (
     errors.phone = "Phone number is too long.";
   }
 
-  if (data.zip.trim() && !/^[a-zA-Z0-9\- ]{3,10}$/.test(data.zip)) {
+  if (zip.trim() && !/^[a-zA-Z0-9\- ]{3,10}$/.test(zip)) {
     errors.zip = "Enter a valid ZIP/postal code.";
   }
 
-  if (data.state.trim() && data.state.length > 20) {
+  if (state.trim() && state.length > 20) {
     errors.state = "State name is too long.";
   }
 
-  if (data.city.trim() && data.city.length > 50) {
+  if (city.trim() && city.length > 50) {
     errors.city = "City name is too long.";
   }
 
-  if (data.address.trim() && data.address.length > 100) {
+  if (address.trim() && address.length > 100) {
     errors.address = "Address is too long.";
   }
 
